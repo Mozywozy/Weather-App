@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Weather App</title>
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="dark-mode-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="slider round"></span>
+                </label>
+                <span id="mode-icon" class="fas fa-sun"></span>
+            </div>
+            <div class="search-box">
+                <form action="/" method="get">
+                    <input
+                        type="text"
+                        name="city"
+                        placeholder="Enter city name"
+                        required
+                    >
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div class="weather-content">
+                <div class="weather-main">
+                    <!-- <div class="time">
+                        <div id="day" class="day"></div>
+                        <div id="clock" class="clock"></div>
+                    </div> -->
+                    <!-- Left -->
+                    <div class="highlight-card-container">
+                        <div class="highlight-card">
+                            <h3>UV Index</h3>
+                            <div class="value">{{.uvIndex}}</div>
+                        </div>
+                        <div class="highlight-card">
+                            <h3>Humidity</h3>
+                            <div class="value">{{.humidity}}%</div>
+                        </div>
+                    </div>
+                    <!-- Center -->
+                    <div class="">
+                        <h1 class="city">{{.city}}</h1>
+                        <div class="temp">
+                            <span>{{.temp}}</span>
+                            <span>°C</span>
+                        </div>
+                        <div class="description">{{.description}}</div>
+                        <div class="icon">
+                            <img src="http://openweathermap.org/img/wn/{{.icon}}@2x.png" alt="Weather Icon">
+                        </div>
+                    </div>
+                    <!-- Right -->
+                    <div class="highlight-card-container">
+                        <div class="highlight-card">
+                            <h3>Wind Status</h3>
+                            <div class="value">{{.windSpeed}} m/s</div>
+                        </div>
+                        <div class="highlight-card">
+                            <h3>Visibility</h3>
+                            <div class="value">{{.visibility}} km</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weekly-forecast">
+                    {{range .forecast}}
+                    <div class="forecast-card">
+                        <div class="day">{{.day}}</div>
+                        <div class="temp">{{.temp}}°C</div>
+                        <div class="description">{{.description}}</div>
+                        <div class="icon">
+                            <img src="http://openweathermap.org/img/wn/{{.icon}}@2x.png" alt="Weather Icon">
+                        </div>
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+    const modeIcon = document.getElementById('mode-icon');
+
+    // Load dark mode preference from localStorage
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+        body.classList.add('dark-mode');
+        modeIcon.classList.remove('fa-sun');
+        modeIcon.classList.add('fa-moon');
+        toggle.checked = true;
+    } else {
+        body.classList.add('light-mode');
+        modeIcon.classList.remove('fa-moon');
+        modeIcon.classList.add('fa-sun');
+    }
+
+    toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+            body.classList.add('dark-mode');
+            body.classList.remove('light-mode');
+            modeIcon.classList.remove('fa-sun');
+            modeIcon.classList.add('fa-moon');
+            localStorage.setItem('dark-mode', 'enabled');
+        } else {
+            body.classList.add('light-mode');
+            body.classList.remove('dark-mode');
+            modeIcon.classList.remove('fa-moon');
+            modeIcon.classList.add('fa-sun');
+            localStorage.setItem('dark-mode', 'disabled');
+        }
+    });
+});
+        </script>
+        <script src="/static/js/script.js"></script>
+    </body>
+</html>

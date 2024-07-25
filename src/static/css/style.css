@@ -1,0 +1,265 @@
+body {
+    background: linear-gradient(135deg, #5a8dee, #74c6f4);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    max-width: 1000px; /* Adjusted width */
+    opacity: 0;
+    animation: slideUp 1s forwards;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    from {
+        transform: translateY(50px);
+    }
+}
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    width: 220px; /* Adjusted width */
+    margin-right: 10px;
+}
+
+.search-box button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #5a8dee;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.search-box button:hover {
+    background-color: #e0e0e0;
+}
+
+.weather-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.weather-main {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}       
+
+
+
+.city {
+    font-size: 2em; /* Adjusted font size */
+    margin: 0;
+}
+
+.temp {
+    font-size: 4em; /* Adjusted font size */
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.temp span:nth-child(1) {
+    font-size: 1.8em; /* Adjusted font size */
+}
+
+.temp span:nth-child(2) {
+    font-size: 0.5em;
+}
+
+.description {
+    font-size: 1em; /* Adjusted font size */
+    margin: 5px 0; /* Adjusted margin */
+}
+
+.icon img {
+    width: 120px; /* Adjusted width */
+}
+
+.highlight-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.highlight-card {
+    width: 120px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-card h3 {
+    font-size: 1em; /* Adjusted font size */
+}
+
+.highlight-card .value {
+    font-size: 1.2em; /* Adjusted font size */
+}
+
+.weekly-forecast {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.forecast-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100px; /* Adjusted width */
+}
+
+.forecast-card .day {
+    font-size: 1em; /* Adjusted font size */
+}
+
+.forecast-card .temp {
+    font-size: 1.2em; /* Adjusted font size */
+}
+
+.forecast-card .description {
+    font-size: 0.8em; /* Adjusted font size */
+}
+
+.forecast-card .icon img {
+    width: 40px; /* Adjusted width */
+}
+
+/* Toggle Switch Styles */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #5a8dee;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background: linear-gradient(135deg, #1c1c1c, #333);
+    color: #e0e0e0;
+}
+
+/* Gaya untuk ikon mode */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#mode-icon {
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+body.dark-mode #mode-icon {
+    color: #f39c12; /* Warna kuning untuk ikon matahari dalam mode gelap */
+}
+
+body.light-mode #mode-icon {
+    color: #2980b9; /* Warna biru untuk ikon bulan dalam mode terang */
+}
+
+
+.search-box input[type="text"].dark-mode {
+    background: #555;
+    color: #e0e0e0;
+}
+
+.search-box button.dark-mode {
+    background-color: #444;
+    color: #e0e0e0;
+}
+
+.search-box button.dark-mode:hover {
+    background-color: #666;
+}
